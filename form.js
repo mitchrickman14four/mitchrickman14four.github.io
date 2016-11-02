@@ -29,7 +29,7 @@
   var input = document.getElementById('id123-control23176353');
   console.log(input);
   var button = document.getElementById('id123-button-send');
-  var clickHandler; = button.onclick;
+  var clickHandler = button.onclick;
   button.onclick = false
   var cookieName = 'usedEmails';
   var tempCookieName = 'tempEmail';
