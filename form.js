@@ -24,46 +24,45 @@
     }
     return "";
   }
-  window.onload = function() {
-    var form = document.getElementById('mainform123');
-    var input = document.getElementById('id123-control23176353');
-    var button = document.getElementById('id123-button-send');
-    var clickHandler;
-    var cookieName = 'usedEmails';
-    var tempCookieName = 'tempEmail';
-    var cookieManager = new CookieManager();
 
-    var isEmailUnique = function( emailAddress ) {
-      var cookieValue = cookieManager.get(cookieName);
-      return cookieValue.indexOf(emailAddress) > -1 ? false : true;
-    };
+  var form = document.getElementById('mainform123');
+  var input = document.getElementById('id123-control23176353');
+  console.log(input);
+  var button = document.getElementById('id123-button-send');
+  var clickHandler; = button.onclick;
+  button.onclick = false
+  var cookieName = 'usedEmails';
+  var tempCookieName = 'tempEmail';
+  var cookieManager = new CookieManager();
 
-    var appendToCookie = function ( emailAddress ) {
-      var cookieValue = cookieManager.get(cookieName);
-      if ( cookieValue == "" ) {
-        cookieManager.set(cookieName, emailAddress);
-      }
-      else {
-        cookieManager.set(cookieName, cookieValue + "," + emailAddress);
-      }
+  var isEmailUnique = function( emailAddress ) {
+    var cookieValue = cookieManager.get(cookieName);
+    return cookieValue.indexOf(emailAddress) > -1 ? false : true;
+  };
+
+  var appendToCookie = function ( emailAddress ) {
+    var cookieValue = cookieManager.get(cookieName);
+    if ( cookieValue == "" ) {
+      cookieManager.set(cookieName, emailAddress);
     }
-
-    var onFormSubmit = function( event ) {
-      var isUnique = isEmailUnique( input.value );
-      clickHandler = typeof clickHandler == 'undefined' ? button.onclick : clickHandler;
-      button.onclick = false
-
-      if ( isUnique ) {
-        cookieManager.set(tempCookieName, input.value);
-        clickHandler.call(this, event);
-      }
-      else {
-        event.preventDefault();
-        event.stopPropagation();
-        alert('You’ve already entered today. Check back tomorrow and get another cast.');
-      }
-    };
-
-    button.addEventListener('click', onFormSubmit);
+    else {
+      cookieManager.set(cookieName, cookieValue + "," + emailAddress);
+    }
   }
+
+  var onFormSubmit = function( event ) {
+    var isUnique = isEmailUnique( input.value );
+
+    if ( isUnique ) {
+      cookieManager.set(tempCookieName, input.value);
+      clickHandler.call(this, event);
+    }
+    else {
+      event.preventDefault();
+      event.stopPropagation();
+      alert('You’ve already entered today. Check back tomorrow and get another cast.');
+    }
+  };
+
+  button.addEventListener('click', onFormSubmit);
 })();
