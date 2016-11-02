@@ -59,7 +59,7 @@
     else {
       event.preventDefault();
       event.stopPropagation();
-      alert('You have already used this email address today');
+      alert('You’ve already entered today. Check back tomorrow and get another cast.');
     }
   };
 
