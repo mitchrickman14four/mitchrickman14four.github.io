@@ -66,6 +66,6 @@
       };
 
       button.addEventListener('click', onFormSubmit);
-    }, 100);
+    }, 1000);
   });
 })();
