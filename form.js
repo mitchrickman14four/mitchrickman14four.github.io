@@ -28,9 +28,7 @@
   var form = document.getElementById('mainform123');
   var input = document.getElementById('id123-control23176353');
   var button = document.getElementById('id123-button-send');
-  console.log(button);
-  var clickHandler = button.onclick;
-  button.onclick = false
+  var clickHandler;
   var cookieName = 'usedEmails';
   var tempCookieName = 'tempEmail';
   var cookieManager = new CookieManager();
@@ -52,6 +50,8 @@
 
   var onFormSubmit = function( event ) {
     var isUnique = isEmailUnique( input.value );
+    clickHandler = typeof clickHandler == 'undefined' ? button.onclick : clickHandler;
+    button.onclick = false
 
     if ( isUnique ) {
       cookieManager.set(tempCookieName, input.value);
