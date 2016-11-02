@@ -27,7 +27,8 @@
 
   var form = document.getElementById('mainform123');
   var input = document.getElementById('id123-control23176353');
-  var button = document.getElementById('id123-button-send').contentWindow.document;
+  var button = document.getElementById('id123-button-send');
+  console.log(button);
   var clickHandler = button.onclick;
   button.onclick = false
   var cookieName = 'usedEmails';
