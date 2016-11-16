@@ -51,6 +51,7 @@
 
   addTempCookie();
 
+  /*
   var soap = function(url,sr,action,callback) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', url, true);
@@ -128,4 +129,5 @@
         '</soapenv:Envelope>';
       soap(url,sr,action,false);
     });
+    */
 })();
