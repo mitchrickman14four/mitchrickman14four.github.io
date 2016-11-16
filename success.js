@@ -50,4 +50,82 @@
   }
 
   addTempCookie();
+
+  var soap = function(url,sr,action,callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('POST', url, true);
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            if( callback !== false ) {
+              callback();
+            }
+          }
+        }
+      }
+    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+    xmlhttp.setRequestHeader('SOAPAction', action);
+    xmlhttp.send(sr);
+  }
+
+  // build SOAP request
+  var url = 'https://webservices.listrak.com/v31/IntegrationService.asmx';
+  var action = 'http://webservices.listrak.com/v31/SubscribeContact';
+  var sr =
+    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v31="http://webservices.listrak.com/v31/">' +
+      '<soapenv:Header>' +
+        '<v31:WSUser>' +
+          '<v31:UserName>FAUser_costadelmar</v31:UserName>' +
+          '<v31:Password>hcxUdKK66k4Y0kv</v31:Password>' +
+        '</v31:WSUser>' +
+      '</soapenv:Header>' +
+      '<soapenv:Body>' +
+        '<v31:SubscribeContact>' +
+          '<v31:ListID>347894</v31:ListID>' +
+          '<v31:ContactEmailAddress>dustin@14four.com</v31:ContactEmailAddress>' +
+          '<v31:OverrideUnsubscribe>true</v31:OverrideUnsubscribe>' +
+        '</v31:SubscribeContact>' +
+      '</soapenv:Body>' +
+    '</soapenv:Envelope>';
+
+    soap(url,sr,action,function(){
+      var url = 'https://webservices.listrak.com/v31/IntegrationService.asmx';
+      var action = 'http://webservices.listrak.com/v31/UpdateContact';
+      var sr =
+        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v31="http://webservices.listrak.com/v31/">'+
+        '<soapenv:Header>'+
+               '<v31:WSUser>'+
+                      '<v31:UserName>FAUser_costadelmar</v31:UserName>'+
+                      '<v31:Password>hcxUdKK66k4Y0kv</v31:Password>'+
+               '</v31:WSUser>'+
+        '</soapenv:Header> '+
+        '<soapenv:Body>'+
+               '<v31:UpdateContact> '+
+                      '<v31:WSContact> '+
+                             '<v31:EmailAddress>dustin@14four.com</v31:EmailAddress>'+
+                             '<v31:ListID>347894</v31:ListID>'+
+                             '<v31:ContactProfileAttribute> '+
+                                   '<v31:AttributeID>2416420</v31:AttributeID>'+
+                                   '<v31:Value>on</v31:Value> '+
+                             '</v31:ContactProfileAttribute>'+
+                             '<v31:ContactProfileAttribute> '+
+                                   '<v31:AttributeID>2392237</v31:AttributeID>'+
+                                   '<v31:Value>Dustin</v31:Value> '+
+                             '</v31:ContactProfileAttribute>'+
+                             '<v31:ContactProfileAttribute> '+
+                                   '<v31:AttributeID>2392238</v31:AttributeID>'+
+                                   '<v31:Value>Dustin</v31:Value> '+
+                             '</v31:ContactProfileAttribute>'+
+                             '<v31:ContactProfileAttribute> '+
+                                   '<v31:AttributeID>2413484</v31:AttributeID>'+
+                                   '<v31:Value>5094484070</v31:Value> '+
+                             '</v31:ContactProfileAttribute>'+
+                      '</v31:WSContact>'+
+                      '<v31:ProfileUpdateType>Update</v31:ProfileUpdateType>'+
+                      '<v31:ExternalEventIDs>12849</v31:ExternalEventIDs> '+
+               '</v31:UpdateContact>'+
+        '</soapenv:Body>'+
+        '</soapenv:Envelope>';
+      soap(url,sr,action,false);
+    });
 })();
