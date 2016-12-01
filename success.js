@@ -64,7 +64,6 @@
     w.google_remarketing_only = false; \
     }; \
     goog_report_conversion = function(url) { \
-    console.log('track');\
     goog_snippet_vars(); \
     window.google_conversion_format = '3'; \
     var opt = new Object(); \
