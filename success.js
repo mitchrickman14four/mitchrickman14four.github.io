@@ -62,7 +62,7 @@
         w.google_remarketing_only = false;
       }
       // DO NOT CHANGE THE CODE BELOW.
-      var goog_report_conversion = function(url) {
+      goog_report_conversion = function(url) {
         goog_snippet_vars();
         window.google_conversion_format = "3";
         var opt = new Object();
