@@ -29,7 +29,9 @@
   var input = document.getElementById('id123-control23176353');
   var button = document.getElementById('id123-button-send');
   var clickHandler = button.onclick;
-  button.onclick = false
+  if ( typeof button !== 'undefined' ) {
+    button.onclick = false
+  }
   var cookieName = 'usedEmails';
   var tempCookieName = 'tempEmail';
   var cookieManager = new CookieManager();
