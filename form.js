@@ -29,10 +29,6 @@
   var form = document.getElementById('mainform123');
   var input = document.getElementById('id123-control23176353');
   var button = document.getElementById('id123-button-send');
-  var clickHandler = button.onclick;
-  if ( typeof button !== 'undefined' ) {
-    button.onclick = false
-  }
   var cookieName = 'usedEmails';
   var tempCookieName = 'tempEmail';
   var cookieManager = new CookieManager();
@@ -117,7 +113,6 @@
       {
         console.log('submitted');
         cookieManager.set(tempCookieName, input.value);
-        clickHandler.call(this, event);
       }
     }
     else {
@@ -125,5 +120,6 @@
     }
   };
 
-  button.addEventListener('click', onFormSubmit);
+  if( button !== null )
+    button.addEventListener('click', onFormSubmit);
 })();
