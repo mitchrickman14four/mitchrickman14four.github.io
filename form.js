@@ -106,7 +106,7 @@
         trackConversion();
         tracked = true;
         setTimeout(function(){
-          button.click();
+          //button.click();
         },2000);
       }
       else
