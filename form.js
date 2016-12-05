@@ -97,21 +97,12 @@
     var isUnique = isEmailUnique( input.value );
 
     if ( isUnique ) {
-      // Get the target event
-      var t = event.target;
-
-      // Temporarily stop propagation
-      event.preventDefault();
-      event.stopPropagation();
-
-      // Track conversion, set cookie, call click handler
       trackConversion();
       cookieManager.set(tempCookieName, input.value);
-      clickHandler.call(this, event);
-
-      // Timeout to allow tracking to take place
-      setTimout(function(){
-        t.dispatchEvent(event);
+      console.log('submitted');
+      setTimeout(function(){
+        console.log('clickhandler');
+        clickHandler.call(this, event);
       },1000);
     }
     else {
