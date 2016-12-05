@@ -107,7 +107,7 @@
         tracked = true;
         setTimeout(function(){
           button.click();
-        },1000);
+        },2000);
       }
       else
       {
