@@ -107,8 +107,8 @@
         trackConversion();
         tracked = true;
         setTimeout(function(){
-          //button.click();
-        },2000);
+          button.click();
+        },1000);
       }
       else
       {
