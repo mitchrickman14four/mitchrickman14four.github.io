@@ -97,11 +97,18 @@
   var onFormSubmit = function( event ) {
     var isUnique = isEmailUnique( input.value );
 
+    if( ! tracked )
+    {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     if ( isUnique ) {
       if( ! tracked )
       {
         console.log('tracking');
         trackConversion();
+        tracked = true;
         setTimeout(function(){
           button.click();
         },1000);
