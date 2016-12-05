@@ -25,6 +25,7 @@
     return "";
   }
 
+  var tracked = false;
   var form = document.getElementById('mainform123');
   var input = document.getElementById('id123-control23176353');
   var button = document.getElementById('id123-button-send');
@@ -95,17 +96,22 @@
 
   var onFormSubmit = function( event ) {
     var isUnique = isEmailUnique( input.value );
-    event.preventDefault();
-    event.stopPropagation();
 
     if ( isUnique ) {
-      trackConversion();
-      cookieManager.set(tempCookieName, input.value);
-      console.log('submitted');
-      setTimeout(function(){
-        console.log('clickhandler');
+      if( ! tracked )
+      {
+        console.log('tracking');
+        trackConversion();
+        setTimeout(function(){
+          button.click();
+        },1000);
+      }
+      else
+      {
+        console.log('submitted');
+        cookieManager.set(tempCookieName, input.value);
         clickHandler.call(this, event);
-      },1000);
+      }
     }
     else {
       alert('You’ve already entered today. Check back tomorrow and get another cast.');
