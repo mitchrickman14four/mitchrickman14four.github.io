@@ -95,6 +95,8 @@
 
   var onFormSubmit = function( event ) {
     var isUnique = isEmailUnique( input.value );
+    event.preventDefault();
+    event.stopPropagation();
 
     if ( isUnique ) {
       trackConversion();
@@ -106,8 +108,6 @@
       },1000);
     }
     else {
-      event.preventDefault();
-      event.stopPropagation();
       alert('You’ve already entered today. Check back tomorrow and get another cast.');
     }
   };
